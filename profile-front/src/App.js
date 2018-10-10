@@ -7,8 +7,11 @@ import { Switch, Route } from 'react-router-dom';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Loggedin from './components/Loggedin';
-import posterDat from './poster.json';
 import Poster from "./components/Poster";
+import Program from "./components/Program";
+import axios from 'axios'
+
+
 
 class App extends Component {
 
@@ -47,21 +50,32 @@ class App extends Component {
     }
   }
 
+/*    getPosterData = () => {
+    let url = `http://localhost:3010/allProjects`;
+    console.log(url)
+    axios.get(url)
+    .then(res => {
+      console.log(res.data);
+      this.setState({poster: res.data});
+    })
+    .catch(e => console.log("error pidiendo poster"))
+
+  } */
+
   render() {
     this.fetchUser()
 
 
     if (this.state.loggedInUser) {
       return (
-
         <div className="App">
-          <loggedin></loggedin>
-
-
-          {/* <header className="App-header">
+          <header className="App-header">
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
-            <Contents></Contents>
-          </header> */}
+          </header>
+          <div>
+            <Poster userInSession={this.state.loggedInUser}/>
+            {/* {posterDat.map((e, i) => <Poster userInSession={this.state.loggedInUser} key={i} title={e.title} _id={e._id}></Poster>)} */}
+          </div>
         </div>
       );
     } else {
@@ -75,9 +89,9 @@ class App extends Component {
             </Switch>
           </header>
           <div>
-            {posterDat.map((e, i) => <Poster key={i} title={e.title}></Poster>)}
+          <Poster/>
+            {/* {posterDat.map((e, i) => <Poster key={i} title={e.title}></Poster>)} */}
           </div>
-
         </div>
       );
     }

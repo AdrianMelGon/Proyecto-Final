@@ -6,8 +6,8 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
-
 const bcryptSalt = 10;
+const Program = require("../models/Program");
 
 mongoose
   .connect('mongodb://localhost/proyecto-final', {useNewUrlParser: true})
@@ -18,30 +18,53 @@ mongoose
     console.error('Error connecting to mongo', err)
   });
 
-let users = [
+let users = []
+
+User.collection.drop();
+
+
+let programs = [
   {
-    username: "alice",
-    password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt)),
+    "name": "Prueba1",
+    "description": "blablabla",
+    "duration": "3weeks",
+    "popularity": 5,
+    "picture": "https://image.tmdb.org/t/p/w500/d9NkfCwczP0TjgrjpF94jF67SK8.jpg",
+    "fee": 300
   },
   {
-    username: "bob",
-    password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
+    "name": "Prueba2",
+    "description": "blablabla",
+    "duration": "3weeks",
+    "popularity": 5,
+    "picture": "https://image.tmdb.org/t/p/w500/d9NkfCwczP0TjgrjpF94jF67SK8.jpg",
+    "fee": 300
+  },
+  {
+    "name": "Prueba3",
+    "description": "blablabla",
+    "duration": "3weeks",
+    "popularity": 5,
+    "picture": "https://image.tmdb.org/t/p/w500/d9NkfCwczP0TjgrjpF94jF67SK8.jpg",
+    "fee": 300
+  },
+  {
+    "name": "Prueba4",
+    "description": "blablabla",
+    "duration": "3weeks",
+    "popularity": 5,
+    "picture": "https://image.tmdb.org/t/p/w500/d9NkfCwczP0TjgrjpF94jF67SK8.jpg",
+    "fee": 300
   }
 ]
 
-User.deleteMany()
-.then(() => {
-  return User.create(users)
-})
-.then(usersCreated => {
-  console.log(`${usersCreated.length} users created with the following id:`);
-  console.log(usersCreated.map(u => u._id));
-})
-.then(() => {
+Program.collection.drop()
+
+Promise.all([User.create(users), Program.create(programs),]).then(values => {
   // Close properly the connection to Mongoose
   mongoose.disconnect()
 })
-.catch(err => {
-  mongoose.disconnect()
-  throw err
-})
+  .catch(err => {
+    mongoose.disconnect()
+    throw err
+  })

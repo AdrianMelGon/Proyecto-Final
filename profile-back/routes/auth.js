@@ -8,7 +8,6 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 
-
 const login = (req, user) => {
   return new Promise((resolve,reject) => {
     req.login(user, err => {
@@ -79,7 +78,6 @@ router.post("/signup", (req, res, next) => {
 
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, theUser, failureDetails) => {
-    
     // Check for errors
     if (err) next(new Error('Something went wrong')); 
     if (!theUser) next(failureDetails)

@@ -87,8 +87,14 @@ app.use(passport.session());
 const index = require('./routes/index');
 app.use('/', index);
 
+const programsIndex = require('./routes/programsIndex');
+app.use('/', programsIndex);
+
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
+
+const pathsRouter = require('./routes/paths');
+app.use('/paths', pathsRouter);
       
 
 module.exports = app;
