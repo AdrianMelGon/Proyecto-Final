@@ -22,41 +22,41 @@ class Poster extends Component {
 }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
     this.setState({ ...this.state, loggedInUser: nextProps["userInSession"] })
   }
 
   handleLogout = (e) => {
     this.props.logout()
   }
-  getPosterData() {
 
+  getPosterData() {
     let url = `http://localhost:3010/allProjects`;
-    console.log(url)
     axios.get(url)
     .then(res => {
-      console.log(res.data);
       this.setState({poster: res.data});
+      console.log(res.data);
     })
     .catch(e => console.log("error pidiendo poster"))
 
   }
   render() {
 
-    let {poster, loggedInUser} = this.state;
+    let {poster} = this.state;
 
 
     if (this.state.loggedInUser) {
+      console.log(poster)
      return( 
        <div>
-        {poster.map((e, i) => <h2 width="100" height="100"><Link to={`/${e._id}`}>{e.title}</Link></h2>)}
+        {poster.map((e, i) => <h2 width="100" height="100"><Link to={`/${e._id}`}>{e.name}</Link></h2>)}
        </div>
       )
     } else {
+      console.log(poster)
       return (
-        <div>
-        {/* {poster.map((e, i) => <h2 width="100" height="100"><Link to={'/signup'}>{this.props.title}</Link></h2>)} */}
-        </div>
+          <div>
+           {poster.map((e, i) => <h2 width="100" height="100"><Link to={`/${e._id}`}>{e.name}</Link></h2>)}
+          </div>
         // <h2 width="100" height="100"><Link to='/signup'>{this.props.title}</Link></h2>
       )
     }

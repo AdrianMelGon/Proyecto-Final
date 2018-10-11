@@ -50,21 +50,9 @@ class App extends Component {
     }
   }
 
-/*    getPosterData = () => {
-    let url = `http://localhost:3010/allProjects`;
-    console.log(url)
-    axios.get(url)
-    .then(res => {
-      console.log(res.data);
-      this.setState({poster: res.data});
-    })
-    .catch(e => console.log("error pidiendo poster"))
-
-  } */
 
   render() {
     this.fetchUser()
-
 
     if (this.state.loggedInUser) {
       return (
