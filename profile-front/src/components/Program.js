@@ -3,46 +3,82 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 
-
-class Program extends Component {
+export default class Program extends Component {
   constructor(props) {
     super(props);
+    console.log(props.match.match.params.id)
+    
     this.state = {
+      loggedInUser: props.user,
       program: props.program,
-      // loading: props.project ? false : true
-    };
-  }
-
-  getProgramData =(props)=> {
-    let {_id} = this.state.project;
-    let url = `http://localhost:3010/paths/${_id}`;
-    // console.log(url)
-    axios.get(url)
-      .then(res => {
-        this.setState({ program: res.data });
-        console.log("Hola")
-        console.log(this.program);
-      })
-      .catch(e => console.log("error pidiendo program"))
+      params: props.match.match.params.id
+    }
   }
   
-  // const { params } = props.match;
-  // const foundProgram = getProgramData(params.id, 10);
-render () {
-  return (
-    <div>
-       <div>
-       <h2>{this.state.name}</h2>
-        <p>{this.state.description}</p>
-         <button>Solicitar</button>
-      </div>
-    </div>
-  )
 
-}
+  componentWillMount() {
+    this.getProgramData();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps.match.params)
+    this.setState({ ...this.state, params: nextProps.match.params, loggedInUser: nextProps["userInSession"] })
+  }
+
+
+  getProgramData() {
+    console.log(this.state)
+    let url = `http://localhost:3010/${this.state.params}`;
+    axios.get(url)
+    .then(res => {
+      console.log(res.data)
+      this.setState({ program: res.data, params: res.data.id});
+
+    })
+    .catch(e => console.log("error pidiendo programa"))
+    
+  }
+  
+  
+  render() {
+
+    let { program } = this.state;
+    console.log(this.state)
+    if (this.state.loggedInUser) {
+      return (
+        <div>
+          <h1>HOla</h1>
+        </div>
+      )
+    } else if(this.state.loggedInUser == null) {
+      return (
+        <h1>Ciao</h1>
+       
+      )
+    }
+
+  }
 }
 
-export default Program;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -68,8 +104,8 @@ export default Program;
 
 // import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
-// import AuthService from './AuthService';
 // import axios from 'axios';
+
 
 
 // class Program extends Component {
@@ -77,87 +113,49 @@ export default Program;
 //     super(props);
 //     this.state = {
 //       program: props.program,
-//       loggedInUser: null,
 //       // loading: props.project ? false : true
 //     };
-//     this.service = new AuthService();
 //   }
+
 
 //   componentWillMount() {
-//     if (!this.state.program) {
-//       this.getProgramData();
-//     }
+//     this.getProgramData();
+
 //   }
 
-//   componentWillReceiveProps(nextProps) {
-//     // console.log(nextProps)
-//     this.setState({ ...this.state, loggedInUser: nextProps["userInSession"] })
-//   }
-
-//   handleLogout = (e) => {
-//     this.props.logout()
-//   }
-//   getProgramData() {
+//   getProgramData =(props)=> {
 //     let {_id} = this.state.project;
 //     let url = `http://localhost:3010/paths/${_id}`;
 //     // console.log(url)
 //     axios.get(url)
-//       .then(res => {
-//         this.setState({ program: res.data, loggedInUser: false});
-//         console.log(this.program);
-//       })
-//       .catch(e => console.log("error pidiendo program"))
-
+//     .then(res => {
+//       this.setState({ program: res.data });
+//       console.log("Hola")
+//       console.log(this.program);
+//     })
+//     .catch(e => console.log("error pidiendo program"))
 //   }
-  
-//   render() {
 
-//     let { program } = this.state;
-//     return (
-//       <div>
-//         <h2>{program.data.name}</h2>
-//         <p>{program.data.description}</p>
-//         <button>Solicitar</button>
+//   let param = props.match.params.id
+//   // const { params } = props.match;
+//   // const foundProgram = getProgramData(params.id, 10);
+// render () {
+//   return (
+//     <div>
+//        <div>
+//        <h2>{this.state.name}</h2>
+//         <p>{this.state.description}</p>
+//          <button>Solicitar</button>
 //       </div>
-//     )
-//   }
+//     </div>
+//   )
+
 // }
+// }
+
 
 // export default Program;
 
 
 
 
-
-//-------------------------------------------
-
-
-
-// import React from 'react';
-// import { myProjects } from './Projects';
-// import { Link } from 'react-router-dom';
-
-// const projectDetails = (props) => {
-//   console.log(props)
-
-//   const getProject = (id) => {
-//     const theProject = oneProject => {
-//       return oneProject.id === id;
-//     }
-//     return myProjects.find(theProject)
-//   };
-  
-//   const { params } = props.match;
-//   const foundProject = getProject(params.id, 10);
-   
-//   return (
-//     <div>
-//       <h2>{ foundProject.name } <span style={{fontSize:"14px"}}>{ foundProject.year }</span></h2>
-//       <h3>Used technologies: { foundProject.technologies }</h3>
-//       <p>{ foundProject.description }</p>
-//       <Link to='/projects'>Back</Link>
-//     </div>
-//   )
-// }
-
-// export default projectDetails;

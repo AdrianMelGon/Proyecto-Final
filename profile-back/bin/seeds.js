@@ -26,7 +26,7 @@ User.collection.drop();
 let programs = [
   {
     "name": "Prueba1",
-    "description": "blablabla",
+    "description": "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
     "duration": "3weeks",
     "popularity": 5,
     "picture": "https://image.tmdb.org/t/p/w500/d9NkfCwczP0TjgrjpF94jF67SK8.jpg",
@@ -34,7 +34,7 @@ let programs = [
   },
   {
     "name": "Prueba2",
-    "description": "blablabla",
+    "description": "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
     "duration": "3weeks",
     "popularity": 5,
     "picture": "https://image.tmdb.org/t/p/w500/d9NkfCwczP0TjgrjpF94jF67SK8.jpg",
@@ -42,7 +42,7 @@ let programs = [
   },
   {
     "name": "Prueba3",
-    "description": "blablabla",
+    "description": "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
     "duration": "3weeks",
     "popularity": 5,
     "picture": "https://image.tmdb.org/t/p/w500/d9NkfCwczP0TjgrjpF94jF67SK8.jpg",
@@ -50,7 +50,7 @@ let programs = [
   },
   {
     "name": "Prueba4",
-    "description": "blablabla",
+    "description": "It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. ",
     "duration": "3weeks",
     "popularity": 5,
     "picture": "https://image.tmdb.org/t/p/w500/d9NkfCwczP0TjgrjpF94jF67SK8.jpg",

@@ -62,7 +62,9 @@ class App extends Component {
           </header>
           <div>
             <Poster userInSession={this.state.loggedInUser}/>
-            {/* {posterDat.map((e, i) => <Poster userInSession={this.state.loggedInUser} key={i} title={e.title} _id={e._id}></Poster>)} */}
+            <Switch>
+              <Route exact path="/:id" component={(id) => <Program user={this.state.loggedInUser} match={id} />} /> 
+            </Switch>
           </div>
         </div>
       );
@@ -71,6 +73,8 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
+          
+
             <Switch>
               <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser} />} />
               <Route exact path='/login' render={() => <Login getUser={this.getTheUser} />} />
@@ -78,7 +82,6 @@ class App extends Component {
           </header>
           <div>
           <Poster/>
-            {/* {posterDat.map((e, i) => <Poster key={i} title={e.title}></Poster>)} */}
           </div>
         </div>
       );

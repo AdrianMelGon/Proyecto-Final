@@ -4,7 +4,7 @@ const router = express.Router();
 const Program = require("../models/Program");
 
 router.get('/allProjects', (req, res, next) => {
-  Program.find({})
+  Program.find()
     .then(response => 
       res.status(200).json(response))
     .catch(err => {
@@ -12,5 +12,13 @@ router.get('/allProjects', (req, res, next) => {
     })
 });
 
+router.get('/:id', (req, res, next) => {
+  Program.findById(req.params.id)
+    .then(response => 
+      res.status(200).json(response))
+    .catch(err => {
+      res.json(err);
+    })
+});
 
 module.exports = router;
