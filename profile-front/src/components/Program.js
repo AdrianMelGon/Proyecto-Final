@@ -22,7 +22,7 @@ export default class Program extends Component {
 
   componentWillReceiveProps(nextProps) {
     console.log(nextProps.match.params)
-    this.setState({ ...this.state, params: nextProps.match.params, loggedInUser: nextProps["userInSession"] })
+    this.setState({ ...this.state, params: nextProps.match.params, loggedInUser: nextProps["user"] })
   }
 
 
@@ -39,24 +39,35 @@ export default class Program extends Component {
     
   }
   
+ /*   renderProgram = () => {
+     return ()
+   } */
+  
   
   render() {
 
     let { program } = this.state;
-    console.log(this.state)
-    if (this.state.loggedInUser) {
-      return (
-        <div>
-          <h1>HOla</h1>
-        </div>
-      )
-    } else if(this.state.loggedInUser == null) {
-      return (
-        <h1>Ciao</h1>
-       
-      )
-    }
-
+    /* this.state.program ? */
+if (this.state.program){
+  console.log(this.state.program.fee)
+  if (this.state.loggedInUser) {
+    return (
+      <div>
+        <h1>{this.state.program.name}</h1>
+        <h2>{this.state.program.description}</h2>
+      
+      </div>
+    )
+  } else if(this.state.loggedInUser == null) {
+    return (
+      <h1>Ciao</h1>
+     
+    )
+  }
+} else {
+  return <p>Nothing yet</p>;
+}
+  
   }
 }
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AuthService from './AuthService';
 import axios from 'axios';
+import Program from './Program';
 
 
 class Poster extends Component {
@@ -17,7 +18,7 @@ class Poster extends Component {
   componentWillMount() {
       this.getPosterData();
   
-  }
+  } 
 
   componentWillReceiveProps(nextProps) {
     this.setState({ ...this.state, loggedInUser: nextProps["userInSession"] })
@@ -41,15 +42,14 @@ class Poster extends Component {
 
     let { poster } = this.state;
     if (this.state.loggedInUser) {
-      console.log(poster)
       return (
         <div>
-          {poster.map((e, i) => <h2 width="100" height="100"><Link to={`/${e._id}`}>{e.name}</Link></h2>)}
+          {poster.map((e, i) => <h2 width="100" height="100" ><Link to={`/${e._id}`}>{e.name}</Link></h2>)}
         </div>
       )
     } else if(this.state.loggedInUser == null) {
-  z
       return (
+        // <h1>Hola</h1>
         <div>
           {this.state.poster ? this.state.poster.map((e, i) => <h2 width="100" height="100"><Link to={`/signup`}>{e.name}</Link></h2>) : ""}
         </div>
