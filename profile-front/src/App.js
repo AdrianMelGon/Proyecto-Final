@@ -50,9 +50,21 @@ class App extends Component {
     }
   }
 
+/*    getPosterData = () => {
+    let url = `http://localhost:3010/allProjects`;
+    console.log(url)
+    axios.get(url)
+    .then(res => {
+      console.log(res.data);
+      this.setState({poster: res.data});
+    })
+    .catch(e => console.log("error pidiendo poster"))
+
+  } */
 
   render() {
     this.fetchUser()
+
 
     if (this.state.loggedInUser) {
       return (
@@ -62,9 +74,7 @@ class App extends Component {
           </header>
           <div>
             <Poster userInSession={this.state.loggedInUser}/>
-            <Switch>
-              <Route exact path="/:id" component={(id) => <Program user={this.state.loggedInUser} match={id} />} /> 
-            </Switch>
+            {/* {posterDat.map((e, i) => <Poster userInSession={this.state.loggedInUser} key={i} title={e.title} _id={e._id}></Poster>)} */}
           </div>
         </div>
       );
@@ -73,8 +83,6 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
-          
-
             <Switch>
               <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser} />} />
               <Route exact path='/login' render={() => <Login getUser={this.getTheUser} />} />
@@ -82,6 +90,7 @@ class App extends Component {
           </header>
           <div>
           <Poster/>
+            {/* {posterDat.map((e, i) => <Poster key={i} title={e.title}></Poster>)} */}
           </div>
         </div>
       );
