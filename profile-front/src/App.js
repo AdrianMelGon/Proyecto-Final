@@ -61,8 +61,10 @@ class App extends Component {
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
           </header>
           <div>
-            <Poster userInSession={this.state.loggedInUser}/>
+            
+
             <Switch>
+            <Route exact path="/auth/login" render={() => <Poster userInSession={this.state.loggedInUser}/>} /> 
               <Route exact path="/:id" component={(id) => <Program user={this.state.loggedInUser} match={id} />} /> 
             </Switch>
           </div>
@@ -77,7 +79,7 @@ class App extends Component {
 
             <Switch>
               <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser} />} />
-              <Route exact path='/login' render={() => <Login getUser={this.getTheUser} />} />
+              <Route exact path='/auth/login' render={() => <Login getUser={this.getTheUser} />} />
             </Switch>
           </header>
           <div>
