@@ -33,7 +33,6 @@ export default class Program extends Component {
     .then(res => {
       console.log(res.data)
       this.setState({ program: res.data, params: res.data.id});
-
     })
     .catch(e => console.log("error pidiendo programa"))
     

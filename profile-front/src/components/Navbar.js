@@ -21,22 +21,38 @@ class Navbar extends Component {
   render() {
     if (this.state.loggedInUser) {
       return (
-        <nav className="nav-style">
-          <ul>
-            <li><a onClick={this.handleLogout}>Logout</a></li>
-          </ul>
+        <nav className="navbar navbar-dark bg-dark">
+        <h2 className="text-white">DIETFLIX</h2>
+        <a className="text-white" onClick={this.handleLogout} Logout>Logout</a>
 
-          <h2>Welcome, {this.state.loggedInUser.username}</h2>
+
+
+          {/* <ul>
+            <li><a onClick={this.handleLogout}>Logout</a></li>
+          </ul> */}
+
+          <h2 className="text-white">Welcome, {this.state.loggedInUser.username}</h2>
         </nav>
       )
     } else {
       return (
         <div>
-          <nav className="nav-style">
-            <ul>
-              <li><Link to='/signup'>Signup</Link></li>
-              <li><Link to='/auth/login'>Login</Link></li>
-            </ul>
+          <nav className="navbar navbar-dark bg-dark">
+          <h2 className="text-white">DIETFLIX</h2>
+          <div>
+              <Link className="text-white" to='/signup'>Signup</Link>
+              <Link className="text-white" to='/auth/login'>Login</Link>
+          </div>
+
+
+
+  {/*           <ul>
+              <li><Link className="text-white" to='/signup'>Signup</Link></li>
+              <li><Link className="text-white" to='/auth/login'>Login</Link></li>
+            </ul> */}
+
+
+
           </nav>
         </div>
       )

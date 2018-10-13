@@ -33,16 +33,16 @@ class Signup extends Component {
   render() {
     return(
       <div>
-        <h3>Welcome!, create your account next:</h3>
+        <h3 className="text-white">Bienvenido a Dietflix:</h3>
 
         <form onSubmit={this.handleFormSubmit}>
           <fieldset>
-            <label>Username:</label>
+            <label className="text-white">Nombre:</label>
             <input type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
           </fieldset>
           
           <fieldset>
-            <label>Password:</label>
+            <label className="text-white">Password:</label>
             <input type="password" name="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
           </fieldset>
           
