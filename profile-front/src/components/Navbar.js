@@ -23,7 +23,7 @@ class Navbar extends Component {
       return (
         <nav className="navbar navbar-dark bg-dark">
         <h2 className="text-white">DIETFLIX</h2>
-        <a className="text-white" onClick={this.handleLogout} Logout>Logout</a>
+        <a className="text-white" onClick={this.handleLogout}>Logout</a>
 
 
 

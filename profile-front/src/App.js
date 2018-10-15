@@ -61,6 +61,7 @@ class App extends Component {
           <header className="App-header">
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
           </header>
+          xxxxx
           <div>
             <Switch>
               <Route  path="/auth/login" exact strict render={() => <Poster userInSession={this.state.loggedInUser} />} />
@@ -81,7 +82,7 @@ class App extends Component {
             </Switch>
           </header>
           <div>
-            <Poster/>
+            <Poster userInSession="xxxxx"/>
 
           </div>
         </div>
