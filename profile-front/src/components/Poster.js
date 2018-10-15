@@ -17,8 +17,8 @@ class Poster extends Component {
 
 
   componentWillReceiveProps(nextProps) {
-    console.log("this.props.userInSession::::::::::::::::::::")
-    console.log(this.props.userInSession)
+    // console.log("this.props.userInSession::::::::::::::::::::")
+    // console.log(this.props.userInSession)
     
     this.setState({ ...this.state, loggedInUser: nextProps["userInSession"] })
   }
@@ -34,7 +34,7 @@ class Poster extends Component {
 
   getPosterData() {
 
-    let url = `http://localhost:3010/allProjects`;
+    let url = `http://localhost:4000/allProjects`;
     axios.get(url)
       .then(res => {
         this.setState({ poster: res.data });

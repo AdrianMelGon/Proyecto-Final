@@ -10,6 +10,7 @@ import Loggedin from './components/Auth/Loggedin';
 import Poster from "./components/Poster";
 import Program from "./components/Program";
 import Form from "./components/Form";
+import ClientData from "./components/ShowClientData"
 import axios from 'axios'
 
 
@@ -54,14 +55,12 @@ class App extends Component {
 
   render() {
     this.fetchUser()
-
     if (this.state.loggedInUser) {
       return (
         <div className="App">
           <header className="App-header">
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
           </header>
-          xxxxx
           <div>
             <Switch>
               <Route  path="/auth/login" exact strict render={() => <Poster userInSession={this.state.loggedInUser} />} />
@@ -82,8 +81,8 @@ class App extends Component {
             </Switch>
           </header>
           <div>
-            <Poster userInSession="xxxxx"/>
-
+            <Poster/>
+            <ClientData/>
           </div>
         </div>
       );

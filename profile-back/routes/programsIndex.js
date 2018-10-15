@@ -39,7 +39,20 @@ router.post('/form', (req, res, next) => {
   })
 })
 
-router.get('/getData', (req, res, next) => {
+router.get('/getalldata', (req, res, next) => {
+  console.log("HOLA")
+  // Data.find()
+  //   .then(allData => {
+  //     console.log(allData);
+  //     return res.status(200).json(allData)
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   })
+});
+
+router.get('/data', (req, res, next) => {
+  console.log("PORFI")
   Data.find()
     .then(response => 
       res.status(200).json(response))
