@@ -18,9 +18,9 @@ mongoose
     console.error('Error connecting to mongo', err)
   });
 
-let users = []
+// let users = []
 
-User.collection.drop();
+// User.collection.drop();
 
 
 let programs = [
@@ -30,7 +30,7 @@ let programs = [
     "duration": "2 semanas",
     "popularity": 9.3,
     "picture": "https://upload.wikimedia.org/wikipedia/commons/2/21/MariahGMA.jpg",
-    "fee": "300€"
+    "fee": 300
   },
   {
     "name": "Prueba2",
@@ -60,7 +60,8 @@ let programs = [
 
 Program.collection.drop()
 
-Promise.all([User.create(users), Program.create(programs),]).then(values => {
+Promise.all([/* User.create(users), */ Program.create(programs),]).then(values => {
+  console.log("programs created")
   // Close properly the connection to Mongoose
   mongoose.disconnect()
 })

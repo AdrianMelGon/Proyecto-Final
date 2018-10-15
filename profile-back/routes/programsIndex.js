@@ -39,6 +39,14 @@ router.post('/form', (req, res, next) => {
   })
 })
 
+router.get('/getData', (req, res, next) => {
+  Data.find()
+    .then(response => 
+      res.status(200).json(response))
+    .catch(err => {
+      res.json(err);
+    })
+});
 
 
 
