@@ -6,8 +6,8 @@ const userDataSchema = new Schema({
   weight: Number,
   age: Number,
   allergy: {type: String, enum: ["milk", "eggs", "nuts", "soy", "gluten", "fish", "shellfish", "others"]},
-  objective: String,
   previousDiet: Boolean,
+  objective: String,
 
 });
 

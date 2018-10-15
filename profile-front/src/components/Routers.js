@@ -1,18 +1,18 @@
-// import axios from 'axios';
+import axios from 'axios';
 
-// class AuthService {
-//   constructor() {
-//     this.service = axios.create({
-//       baseURL: 'http://localhost:3010/auth',
-//       withCredentials: true
-//     });
-//   }
+class BackRoutes {
+  constructor() {
+    this.service = axios.create({
+      baseURL: 'http://localhost:3010/',
+      withCredentials: true
+    });
+  }
 
-//   getSeeds = () => {
-//     return this.service.get('/currentUser',)
-//     .then(response => response.data)
-//   }
+  addData = (edad, estatura, peso) => {
+    return this.service.post('/form', {edad, estatura, peso})
+    .then(response => response.data)
+  }
 
-// }
+}
 
-// module export AuthService;
+export default BackRoutes;

@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import AuthService from './components/AuthService';
+import AuthService from './components/Auth/AuthService';
 import Navbar from './components/Navbar';
-import { Switch, Route } from 'react-router-dom';
-import Signup from './components/Signup';
-import Login from './components/Login';
-import Loggedin from './components/Loggedin';
+import { Switch, Route, Router } from 'react-router-dom';
+import Signup from './components/Auth/Signup';
+import Login from './components/Auth/Login';
+import Loggedin from './components/Auth/Loggedin';
 import Poster from "./components/Poster";
 import Program from "./components/Program";
+import Form from "./components/Form";
 import axios from 'axios'
 
 
@@ -61,12 +62,11 @@ class App extends Component {
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
           </header>
           <div>
-            
-
             <Switch>
-            <Route exact path="/auth/login" render={() => <Poster userInSession={this.state.loggedInUser}/>} /> 
-              <Route exact path="/:id" component={(id) => <Program user={this.state.loggedInUser} match={id} />} /> 
-            </Switch>
+              <Route  path="/auth/login" exact strict render={() => <Poster userInSession={this.state.loggedInUser} />} />
+              <Route  path="/:id" exact strict render={(id) => <Program user={this.state.loggedInUser} match={id} />} />
+            </Switch> 
+            {/* <Form/> */}
           </div>
         </div>
       );
@@ -75,15 +75,14 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
-          
-
             <Switch>
               <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser} />} />
               <Route exact path='/auth/login' render={() => <Login getUser={this.getTheUser} />} />
             </Switch>
           </header>
           <div>
-          <Poster/>
+            <Poster/>
+            <Form/>
           </div>
         </div>
       );
