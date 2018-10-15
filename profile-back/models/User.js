@@ -4,10 +4,7 @@ const Schema   = mongoose.Schema;
 const userSchema = new Schema({
   username: String,
   password: String,
-  rol: { type: String, enum: ["admin", "client", "nutritionist"] },
-  isClient: { type: Boolean, default: false },
-  isNutricionist: { type: Boolean, default: false},
-  fee: { type: Number, default: null }
+  zona: String
 }, {
   timestamps: {
     createdAt: 'created_at',

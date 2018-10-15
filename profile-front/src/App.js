@@ -66,7 +66,7 @@ class App extends Component {
               <Route  path="/auth/login" exact strict render={() => <Poster userInSession={this.state.loggedInUser} />} />
               <Route  path="/:id" exact strict render={(id) => <Program user={this.state.loggedInUser} match={id} />} />
             </Switch> 
-            {/* <Form/> */}
+            <Form/>
           </div>
         </div>
       );
@@ -82,7 +82,7 @@ class App extends Component {
           </header>
           <div>
             <Poster/>
-            <Form/>
+
           </div>
         </div>
       );

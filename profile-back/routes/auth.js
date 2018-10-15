@@ -21,19 +21,21 @@ const login = (req, user) => {
 }
 
 
-router.get("/login", (req, res, next) => {
-  res.render("auth/login", { "message": req.flash("error") });
-});
+// router.get("/login", (req, res, next) => {
+//   res.render("auth/login", { "message": req.flash("error") });
+// });
 
 
-router.get("/signup", (req, res, next) => {
-  res.render("auth/signup");
-});
+// router.get("/signup", (req, res, next) => {
+//   res.render("auth/signup");
+// });
 
 
 router.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
+  const zona = req.body.zona;
+
   if (username === "" || password === "") {
     res.status(400).json({ message: 'Provide username and password' });
     return;
@@ -54,7 +56,8 @@ router.post("/signup", (req, res, next) => {
 
     const newUser = new User({
       username,
-      password: hashPass
+      password: hashPass,
+      zona
     });
 
     newUser.save(err => {

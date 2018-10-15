@@ -41,11 +41,11 @@ class Login extends Component {
   render() {
 
     return (<div>
-      <h3 className="text-white">Please, login to our site</h3>
+      <h3 className="text-white">Accede a nuestra web</h3>
 
       <form onSubmit={this.handleFormSubmit}>
         <fieldset>
-          <label className="text-white">Username:</label>
+          <label className="text-white">Nombre:</label>
           <input type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
         </fieldset>
 

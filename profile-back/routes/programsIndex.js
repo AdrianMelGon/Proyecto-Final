@@ -23,11 +23,11 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.post('/form', (req, res, next) => {
-  const {edad, peso, estatura} = req.body;
-  const newData = new Data ({
-    edad,
-    peso, 
-    estatura,
+  const userId = req.user._id
+  const {sexo, edad, estatura, peso, alergias, noMeGusta, primDieta, objetivo} = req.body;
+  const newData = new Data (
+    {
+    sexo, edad, estatura, peso, alergias, noMeGusta, primDieta, objetivo, userId
   })
 
   newData.save(err =>{

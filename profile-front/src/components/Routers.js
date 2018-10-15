@@ -8,8 +8,8 @@ class BackRoutes {
     });
   }
 
-  addData = (edad, estatura, peso) => {
-    return this.service.post('/form', {edad, estatura, peso})
+  addData = (sexo, edad, estatura, peso, alergias, noMeGusta, primDieta, objetivo) => {
+    return this.service.post('/form', {sexo, edad, estatura, peso, alergias, noMeGusta, primDieta, objetivo})
     .then(response => response.data)
   }
 
