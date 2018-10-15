@@ -17,9 +17,6 @@ class Poster extends Component {
 
 
   componentWillReceiveProps(nextProps) {
-    // console.log("this.props.userInSession::::::::::::::::::::")
-    // console.log(this.props.userInSession)
-    
     this.setState({ ...this.state, loggedInUser: nextProps["userInSession"] })
   }
 
@@ -38,33 +35,28 @@ class Poster extends Component {
     axios.get(url)
       .then(res => {
         this.setState({ poster: res.data });
-        // console.log(res.data);
       })
       .catch(e => console.log("error pidiendo poster"))
 
   }
+  S
+  render() {
 
-
-
-render() {
-  // console.log(this.state.poster)
-  // console.log(this.state.loggedInUser)
-
-   let { poster } = this.state;
-   if (this.state.loggedInUser) {
-    return (
-      <div className="poster-cont">
-        {poster.map((e, i) => <div className="poster"><h2><Link to={`/${e._id}`}>{e.name}</Link></h2></div>) }
-      </div>
-    )
-  } else if(this.state.loggedInUser == null) {
-    return (
-      <div  className="poster-cont">
-        {this.state.poster ? this.state.poster.map((e, i) => <div className="poster"><h2><Link to={`/signup`}>{e.name}</Link></h2></div>) : ""}
-      </div>
-    )
-  } 
-}
+    let { poster } = this.state;
+    if (this.state.loggedInUser) {
+      return (
+        <div className="poster-cont">
+          {poster.map((e, i) => <div className="poster"><h2><Link to={`/${e._id}`}>{e.name}</Link></h2></div>)}
+        </div>
+      )
+    } else if (this.state.loggedInUser == null) {
+      return (
+        <div className="poster-cont">
+          {this.state.poster ? this.state.poster.map((e, i) => <div className="poster"><h2><Link to={`/signup`}>{e.name}</Link></h2></div>) : ""}
+        </div>
+      )
+    }
+  }
 }
 
 export default Poster;

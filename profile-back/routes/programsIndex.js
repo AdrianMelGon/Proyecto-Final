@@ -13,14 +13,6 @@ router.get('/allProjects', (req, res, next) => {
     })
 });
 
-router.get('/:id', (req, res, next) => {
-  Program.findById(req.params.id)
-    .then(response => 
-      res.status(200).json(response))
-    .catch(err => {
-      res.json(err);
-    })
-});
 
 router.post('/form', (req, res, next) => {
   const userId = req.user._id
@@ -39,21 +31,21 @@ router.post('/form', (req, res, next) => {
   })
 })
 
-router.get('/getalldata', (req, res, next) => {
+router.get('/getData', (req, res, next) => {
   console.log("HOLA")
-  // Data.find()
-  //   .then(allData => {
-  //     console.log(allData);
-  //     return res.status(200).json(allData)
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   })
+  Data.find()
+    .then(allData => {
+      console.log(allData);
+      return res.status(200).json(allData)
+    })
+    .catch(err => {
+      console.log(err);
+    })
 });
 
-router.get('/data', (req, res, next) => {
-  console.log("PORFI")
-  Data.find()
+
+router.get('/:id', (req, res, next) => {
+  Program.findById(req.params.id)
     .then(response => 
       res.status(200).json(response))
     .catch(err => {
