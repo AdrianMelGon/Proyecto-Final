@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AuthService from './Auth/AuthService';
 import axios from 'axios';
-import Program from './Program';
 
 
 class Poster extends Component {
@@ -39,9 +38,8 @@ class Poster extends Component {
       .catch(e => console.log("error pidiendo poster"))
 
   }
-  S
+  
   render() {
-
     let { poster } = this.state;
     if (this.state.loggedInUser) {
       return (
