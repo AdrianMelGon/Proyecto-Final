@@ -6,10 +6,11 @@ import axios from 'axios';
 
 class Poster extends Component {
   constructor(props) {
+    console.log(props)
     super(props);
     this.state = {
-      poster: props.poster,
-      loggedInUser: null,
+      poster: null,
+      loggedInUser: props.userInSession,
     };
     this.service = new AuthService();
   }
@@ -17,6 +18,7 @@ class Poster extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({ ...this.state, loggedInUser: nextProps["userInSession"] })
+    this.getPosterData();
   }
 
   componentWillMount() {
@@ -33,6 +35,8 @@ class Poster extends Component {
     let url = `http://localhost:4000/allProjects`;
     axios.get(url)
       .then(res => {
+console.log("entra")
+console.log(res)
         this.setState({ poster: res.data });
       })
       .catch(e => console.log("error pidiendo poster"))
@@ -40,11 +44,14 @@ class Poster extends Component {
   }
   
   render() {
-    let { poster } = this.state;
+
+console.log(this.state.loggedInUser)
+console.log(this.state.poster)
+
     if (this.state.loggedInUser) {
       return (
         <div className="poster-cont">
-          {poster.map((e, i) => <div className="poster"><h2><Link to={`/${e._id}`}>{e.name}</Link></h2></div>)}
+          {this.state.poster.map((e, i) => <div className="poster"><h2><Link to={`/${e._id}`}>{e.name}</Link></h2></div>)}
         </div>
       )
     } else if (this.state.loggedInUser == null) {
@@ -55,6 +62,9 @@ class Poster extends Component {
       )
     }
   }
+
+
+
 }
 
 export default Poster;

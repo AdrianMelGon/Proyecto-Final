@@ -12,6 +12,8 @@ class Navbar extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({ ...this.state, loggedInUser: nextProps["userInSession"] })
+    console.log("recibe en navbar")
+    console.log(this.state.loggedInUser)
   }
 
   handleLogout = (e) => {
@@ -19,40 +21,25 @@ class Navbar extends Component {
   }
 
   render() {
+
     if (this.state.loggedInUser) {
       return (
         <nav className="navbar navbar-dark bg-dark">
-        <h2 className="text-white">DIETFLIX</h2>
-        <a className="text-white" onClick={this.handleLogout}>Logout</a>
-
-
-
-          {/* <ul>
-            <li><a onClick={this.handleLogout}>Logout</a></li>
-          </ul> */}
-
+          <h2 className="text-white">DIETFLIX</h2>
+          <a className="text-white" onClick={this.handleLogout}>Logout</a>
           <h2 className="text-white">Welcome, {this.state.loggedInUser.username}</h2>
+          <Link className="text-white" to='/profile'>My profile</Link>
         </nav>
       )
     } else {
       return (
         <div>
           <nav className="navbar navbar-dark bg-dark">
-          <h2 className="text-white">DIETFLIX</h2>
-          <div>
+            <h2 className="text-white">DIETFLIX</h2>
+            <div>
               <Link className="text-white" to='/signup'>Signup</Link>
               <Link className="text-white" to='/auth/login'>Login</Link>
-          </div>
-
-
-
-  {/*           <ul>
-              <li><Link className="text-white" to='/signup'>Signup</Link></li>
-              <li><Link className="text-white" to='/auth/login'>Login</Link></li>
-            </ul> */}
-
-
-
+            </div>
           </nav>
         </div>
       )
