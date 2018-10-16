@@ -17,7 +17,7 @@ class BackRoutes {
   
   getData = () => {
     return this.service.get('/getData')
-    .then(response => {console.log(response); return response.data})
+    .then(response => response.data)
   }
 }
 

@@ -10,6 +10,7 @@ import Loggedin from './components/Auth/Loggedin';
 import Poster from "./components/Poster";
 import Program from "./components/Program";
 import Form from "./components/Form";
+import Profile from "./components/Profile";
 import ClientData from "./components/ShowClientData"
 import axios from 'axios'
 
@@ -60,13 +61,19 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
+
           </header>
           <div>
             <Switch>
-              <Route  path="/profile" render={() => <Poster userInSession={this.state.loggedInUser} />} />
-              <Route  path="/:id" exact strict render={(id) => <Program user={this.state.loggedInUser} match={id} />} />
+              <Route  path="/myprofile" render={()=> <Profile userInSession={this.state.loggedInUser}/>}/>
+              <Route  path="/:id" render={(id) => <Program user={this.state.loggedInUser} match={id} />} />
             </Switch> 
-            <Form/>
+
+            {/* <Switch>
+              <Route  path="/login" COMPONENT={Poster} userInSession={this.state.loggedInUser} />} />
+              <Route  path="/:id" exact strict render={(id) => <Program user={this.state.loggedInUser} match={id} />} />
+            </Switch>  */}
+            <Form />
           </div>
         </div>
       );
@@ -81,8 +88,8 @@ class App extends Component {
             </Switch>
           </header>
           <div>
-            <Poster/>
-            <ClientData/>
+            <Poster />
+            <ClientData />
           </div>
         </div>
       );

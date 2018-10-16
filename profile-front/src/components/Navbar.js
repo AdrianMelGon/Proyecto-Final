@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AuthService from './Auth/AuthService';
+import Profile from "./Profile";
+
 
 
 class Navbar extends Component {
@@ -12,8 +14,6 @@ class Navbar extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({ ...this.state, loggedInUser: nextProps["userInSession"] })
-    console.log("recibe en navbar")
-    console.log(this.state.loggedInUser)
   }
 
   handleLogout = (e) => {
@@ -28,7 +28,7 @@ class Navbar extends Component {
           <h2 className="text-white">DIETFLIX</h2>
           <a className="text-white" onClick={this.handleLogout}>Logout</a>
           <h2 className="text-white">Welcome, {this.state.loggedInUser.username}</h2>
-          <Link className="text-white" to='/profile'>My profile</Link>
+          <Link className="text-white" to='/myprofile'>My profile</Link>
         </nav>
       )
     } else {

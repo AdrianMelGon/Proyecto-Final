@@ -18,7 +18,6 @@ class Poster extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({ ...this.state, loggedInUser: nextProps["userInSession"] })
-    this.getPosterData();
   }
 
   componentWillMount() {
@@ -35,32 +34,37 @@ class Poster extends Component {
     let url = `http://localhost:4000/allProjects`;
     axios.get(url)
       .then(res => {
-console.log("entra")
-console.log(res)
         this.setState({ poster: res.data });
       })
       .catch(e => console.log("error pidiendo poster"))
 
   }
-  
+
   render() {
 
-console.log(this.state.loggedInUser)
-console.log(this.state.poster)
+    console.log(this.state.loggedInUser)
+    console.log(this.state.poster)
+if(this.state.poster){
+  if (this.state.loggedInUser) {
+    return (
+      <div className="poster-cont">
+      <h1>HOLI</h1>
+        {this.state.poster.map((e, i) => <div className="poster"><h2><Link to={`/${e._id}`}>{e.name}</Link></h2></div>)}
+      </div>
+    )
+  } else if (this.state.loggedInUser == null) {
+    return (
+      <div className="poster-cont">
+        {this.state.poster ? this.state.poster.map((e, i) => <div className="poster"><h2><Link to={`/signup`}>{e.name}</Link></h2></div>) : ""}
+      </div>
+    )
+  }
 
-    if (this.state.loggedInUser) {
-      return (
-        <div className="poster-cont">
-          {this.state.poster.map((e, i) => <div className="poster"><h2><Link to={`/${e._id}`}>{e.name}</Link></h2></div>)}
-        </div>
-      )
-    } else if (this.state.loggedInUser == null) {
-      return (
-        <div className="poster-cont">
-          {this.state.poster ? this.state.poster.map((e, i) => <div className="poster"><h2><Link to={`/signup`}>{e.name}</Link></h2></div>) : ""}
-        </div>
-      )
-    }
+} else {
+  return(
+  <h1>ERROR</h1>
+  )
+}
   }
 
 
