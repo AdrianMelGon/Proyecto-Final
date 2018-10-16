@@ -32,7 +32,6 @@ router.post('/form', (req, res, next) => {
 })
 
 router.get('/getData', (req, res, next) => {
-  console.log("HOLA")
   Data.find()
     .then(allData => {
       console.log(allData);
@@ -42,6 +41,7 @@ router.get('/getData', (req, res, next) => {
       console.log(err);
     })
 });
+
 
 
 router.get('/:id', (req, res, next) => {

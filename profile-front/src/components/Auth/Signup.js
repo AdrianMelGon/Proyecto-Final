@@ -4,7 +4,7 @@ import AuthService from './AuthService'
 class Signup extends Component {
   constructor(props){
     super(props);
-    this.state = { username: '', password: '', zona: '' };
+    this.state = { username: '', password: '', isNutricionist: '' };
     this.service = new AuthService();
   }
     
@@ -12,14 +12,15 @@ class Signup extends Component {
     event.preventDefault();
     const username = this.state.username;
     const password = this.state.password;
-    const zona = this.state.zona;
+    const isNutricionist = this.state.isNutricionist;
+    console.log(isNutricionist)
 
-    this.service.signup(username, password, zona)
+    this.service.signup(username, password, isNutricionist)
     .then( response => {
         this.setState({
             username: "", 
             password: "",
-            zona: ""
+            isNutricionist: ""
         });
         this.props.getUser(response.user)
     })
@@ -28,7 +29,14 @@ class Signup extends Component {
 
   handleChange = (event) => {  
     const {name, value} = event.target;
+    console.log(name)
     this.setState({[name]: value});
+  }
+      
+  handleBoolean = (event) => {  
+    const {value} = event.target;
+    console.log(value)
+    this.setState({isNutricionist: value});
   }
       
 
@@ -48,10 +56,19 @@ class Signup extends Component {
             <input type="password" name="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
           </fieldset>
 
-          <fieldset>
-            <label className="text-white">Zona:</label>
-            <input type="text" name="zona" value={this.state.zona} onChange={ e => this.handleChange(e)} />
-          </fieldset>
+         <div>
+            <label className="text-white">¿Eres nutricionista?</label>
+            <br></br>
+            <div>
+            <input type="checkbox" value={false} onChange={ e => {console.log(e.target); return this.handleBoolean(e)}} />
+
+            <label for={false}>No</label>
+            </div>
+        
+              
+            <input type="checkbox" name="Si" value={true} onChange={ e => this.handleBoolean(e)} />
+            <label htmlFor="Si">Sí</label>
+          </div>
           
           <input type="submit" value="Sign up" />
         </form>

@@ -8,8 +8,8 @@ class AuthService {
     });
   }
 
-  signup = (username, password, zona) => {
-    return this.service.post('/signup', {username, password, zona})
+  signup = (username, password, isNutricionist) => {
+    return this.service.post('/signup', {username, password, isNutricionist})
     .then(response => response.data)
   }
 

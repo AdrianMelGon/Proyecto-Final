@@ -48,13 +48,12 @@ export default class Program extends Component {
     let { program } = this.state;
     /* this.state.program ? */
 if (this.state.program){
-  console.log(this.state.program.fee)
   if (this.state.loggedInUser) {
     return (
       <div>
         <h1>{this.state.program.name}</h1>
         <h2>{this.state.program.description}</h2>
-      
+        <button><Link to= '/solicitar'>Solicitar</Link></button>
       </div>
     )
   } else if(this.state.loggedInUser == null) {

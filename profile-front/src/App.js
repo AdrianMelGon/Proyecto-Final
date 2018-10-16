@@ -11,7 +11,10 @@ import Poster from "./components/Poster";
 import Program from "./components/Program";
 import Form from "./components/Form";
 import Profile from "./components/Profile";
-import ClientData from "./components/ShowClientData"
+import Solicitudenviada from "./components/Solicitudenviada";
+import ClientData from "./components/ShowClientData";
+import Response from "./components/Response"
+
 import axios from 'axios'
 
 
@@ -28,6 +31,8 @@ class App extends Component {
     this.setState({
       loggedInUser: userObj
     })
+    console.log(this.state.loggedInUser.isNutricionist)
+
   }
 
   logout = () => {
@@ -57,27 +62,39 @@ class App extends Component {
   render() {
     this.fetchUser()
     if (this.state.loggedInUser) {
-      return (
-        <div className="App">
-          <header className="App-header">
-            <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
-
-          </header>
-          <div>
-            <Switch>
-              <Route  path="/myprofile" render={()=> <Profile userInSession={this.state.loggedInUser}/>}/>
-              <Route  path="/:id" render={(id) => <Program user={this.state.loggedInUser} match={id} />} />
-            </Switch> 
-
-            {/* <Switch>
-              <Route  path="/login" COMPONENT={Poster} userInSession={this.state.loggedInUser} />} />
-              <Route  path="/:id" exact strict render={(id) => <Program user={this.state.loggedInUser} match={id} />} />
-            </Switch>  */}
-            <Form />
+      if (this.state.loggedInUser.isNutricionist === true) {
+        return (
+          <div className="App">
+            <header className="App-header">
+              <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
+            </header>
+            <div>
+              
+              <ClientData />
+              <Route path="/response" render={() => <Response/>} />
+            </div>
           </div>
-        </div>
-      );
-    } else {
+        )
+      }
+      else {
+        return (
+          <div className="App">
+            <header className="App-header">
+              <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
+            </header>
+            <div>
+              <Switch>
+                <Route path="/myprofile" render={() => <Profile userInSession={this.state.loggedInUser} />} />
+                <Route path='/solicitar' render={() => <Form />} />
+                <Route path='/solicitudenviada' render={() => <Solicitudenviada />} />
+                <Route path="/:id" render={(id) => <Program user={this.state.loggedInUser} match={id} />} />
+              </Switch>
+            </div>
+          </div>
+        )
+      }
+    }
+    else {
       return (
         <div className="App">
           <header className="App-header">
@@ -89,7 +106,7 @@ class App extends Component {
           </header>
           <div>
             <Poster />
-            <ClientData />
+
           </div>
         </div>
       );

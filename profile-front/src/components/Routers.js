@@ -22,5 +22,4 @@ class BackRoutes {
 }
 
 
-
 export default BackRoutes;

@@ -34,7 +34,8 @@ const login = (req, user) => {
 router.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
-  const zona = req.body.zona;
+  const isNutricionist = req.body.isNutricionist;
+  console.log(isNutricionist)
 
   if (username === "" || password === "") {
     res.status(400).json({ message: 'Provide username and password' });
@@ -57,7 +58,7 @@ router.post("/signup", (req, res, next) => {
     const newUser = new User({
       username,
       password: hashPass,
-      zona
+      isNutricionist
     });
 
     newUser.save(err => {

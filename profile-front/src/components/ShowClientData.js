@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import BackRoutes from './Routers'
+import { Link } from 'react-router-dom';
 
 class ClientData extends Component {
   constructor(props) {
@@ -34,6 +35,7 @@ class ClientData extends Component {
               <p>{e.edad}</p>
               <p>{e.peso}</p>
               <p>{e.estatura}</p>
+              <button><Link to="/response">Responder</Link></button>
             </div>
 
 

@@ -7,7 +7,7 @@ const programSchema = new Schema({
   duration: String,
   popularity: Number,
   picture: String,
-  fee: { type: Number, default: null }
+  fee: Number
 }
 );
 

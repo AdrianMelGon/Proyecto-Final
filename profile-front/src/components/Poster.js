@@ -50,6 +50,7 @@ if(this.state.poster){
       <div className="poster-cont">
       <h1>HOLI</h1>
         {this.state.poster.map((e, i) => <div className="poster"><h2><Link to={`/${e._id}`}>{e.name}</Link></h2></div>)}
+
       </div>
     )
   } else if (this.state.loggedInUser == null) {

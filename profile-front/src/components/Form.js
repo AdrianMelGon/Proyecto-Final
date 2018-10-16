@@ -76,7 +76,8 @@ class Form extends Component {
   <input type="string" name="objetivo" value={this.state.objetivo} onChange={e => this.handleChange(e)} />
 </fieldset>
 
-<input type="submit" value="Enviar" />
+<Link to="/solicitudenviada"><input type="submit" value="Enviar" /></Link>
+
 </form>
 
       <h1>{this.state.error ? 'Error' : ''}</h1>
