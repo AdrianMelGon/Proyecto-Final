@@ -14,6 +14,7 @@ import Profile from "./components/Profile";
 import Solicitudenviada from "./components/Solicitudenviada";
 import ClientData from "./components/ShowClientData";
 import Response from "./components/Response"
+import EditProgram from "./components/EditProgram"
 
 import axios from 'axios'
 
@@ -69,9 +70,12 @@ class App extends Component {
               <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
             </header>
             <div>
-              
               <ClientData />
-              <Route path="/response" render={() => <Response/>} />
+              <Switch>
+                <Route path="/myprofile" render={() => <Profile userInSession={this.state.loggedInUser} />} />
+                <Route path="/response" render={() => <Response />} />
+                <Route path="/editProgram/:id" component={EditProgram} />
+              </Switch>
             </div>
           </div>
         )

@@ -31,6 +31,31 @@ router.post('/form', (req, res, next) => {
   })
 })
 
+
+router.post('/postedit/:id', (req, res, next) => {
+  const {name, description, duration, popularity, picture, fee} = req.body;
+  //PICTURE CON CLOUDINARY
+  console.log(req.body)
+  Program.findByIdAndUpdate(req.params.id, {name, description, duration, popularity, fee}, {new:true})
+  .then(response => 
+    res.status(200).json(response))
+  .catch(err => {
+    res.json(err);
+  })
+})
+
+router.delete('/deleteprogram/:id', (req, res, next) => {
+  console.log(req.params.id)
+  Program.findByIdAndRemove(req.params.id)
+  .then(response => 
+    res.status(200).json(response))
+  .catch(err => {
+    res.json(err);
+  })
+})
+
+
+
 router.get('/getData', (req, res, next) => {
   Data.find()
     .then(allData => {

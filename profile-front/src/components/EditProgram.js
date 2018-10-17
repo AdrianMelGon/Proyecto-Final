@@ -3,92 +3,100 @@ import { Link } from 'react-router-dom';
 import BackRoutes from './Routers'
 
 
-class EditProgram extends Component {
-getInitialProgram =()=> {
-  return{
-    name: "",
-    description: "",
-    duration: "",
-    popularity: 0,
-    picture: "",
-    fee: 0
+export default class EditProgram extends Component {
+  constructor(props) {
+    console.log(props.match.params.id)
+    super(props);
+    this.state = {
+      name: "",
+      description: "",
+      duration: "",
+      popularity: 0,
+      picture: "",
+      fee: 0,
+      id: props.match.params.id
+    }
+    this.service = new BackRoutes;
   }
-}
 
-componentDidMount = () => {
-  let programId = this.props.programId;
-}
+  componentWillMount() {
+    
 
-
+  }
 
 
+  handleFormSubmit = (event) => {
+    event.preventDefault();
+    const { name, description, duration, popularity, fee, id } = this.state;
 
-}
+//NO TE OLVIDES DE PICTURE
+    this.service.postEdit(name, description, duration, popularity, fee, id)
+      .then(edited => console.log(edited))
+      .catch(err => console.log(err))
+
+  }
+
+  handleChange = (event) => {
+    let { name, value } = event.target;
+    this.setState({ [name]: value });
+  }
+
+  // handleChangeFile = (event) => {
+  //     const value = event.target.files[0];
+  //     this.setState({file: value});
+  //   }
+
+  handleDeleteProgram = () => {
+    console.log(this.state.id)
+    // event.preventDefault();
+    this.service.deleteProgram(this.state.id)
+    .then(deleted => console.log(deleted))
+    .catch(err => console.log(err))
+  }
 
 
-
-
-
-
-
-// class EditProgram extends Component {
-//   constructor(props) {
-//     console.log(props)
-//     super(props);
-//     this.state = { sexo: '', edad: '', estatura: '', peso: ''};
-//     this.service = new BackRoutes();
-  // }
-
-  // handleFormSubmit = (event) => {
-  //   event.preventDefault();
-  //   const {sexo, edad, estatura, peso} = this.state;
-
-  //   this.service.addData(sexo, edad, estatura, peso)
-  //     .then(anadido => console.log(anadido))
-  //     .catch(e => console.log(e))
-  // }
-
-  // handleChange = (event) => {
-  //   const { name, value } = event.target;
-  //   this.setState({ [name]: value });
-  // }
 
   render() {
 
     return (<div>
-      <h3 className="text-white">Para conocerte un poco mejor, es necesario que nos facilites la siguiente información</h3>
+      <h3 className="text-white">Edita el programa</h3>
 
       <form onSubmit={this.handleFormSubmit}>
 
-<fieldset>
-  <label className="text-white">Sexo:</label>
-  <input type="text" name="sexo" value={this.state.sexo} onChange={e => this.handleChange(e)} />
-</fieldset>
+        <fieldset>
+          <label className="text-white">Name:</label>
+          <input type="text" name="name" value={this.state.name} onChange={e => this.handleChange(e)} />
+        </fieldset>
 
-<fieldset>
-  <label className="text-white">Edad:</label>
-  <input type="number" name="edad" value={this.state.edad} onChange={e => this.handleChange(e)} />
-</fieldset>
+        <fieldset>
+          <label className="text-white">Description:</label>
+          <input type="text" name="description" value={this.state.description} onChange={e => this.handleChange(e)} />
+        </fieldset>
 
-<fieldset>
-  <label className="text-white">Estatura(cm):</label>
-  <input type="number" name="estatura" value={this.state.estatura} onChange={e => this.handleChange(e)} />
-</fieldset>
+        <fieldset>
+          <label className="text-white">Duration:</label>
+          <input type="number" name="duration" value={this.state.duration} onChange={e => this.handleChange(e)} />
+        </fieldset>
 
-<fieldset>
-  <label className="text-white">Peso(kg):</label>
-  <input type="number" name="peso" value={this.state.peso} onChange={e => this.handleChange(e)} />
-</fieldset>
+        <fieldset>
+          <label className="text-white">Popularity:</label>
+          <input type="number" name="popularity" value={this.state.popularity} onChange={e => this.handleChange(e)} />
+        </fieldset>
+
+        <fieldset>
+          <label className="text-white">Fee</label>
+          <input type="number" name="fee" value={this.state.fee} onChange={e => this.handleChange(e)} />
+        </fieldset>
+
+     {/* / <Link to="/solicitudenviada"> */}
+      <button type="submit" value="Enviar" >Enviar</button>
+      {/* </Link> */}
+      </form>
 
 
-<Link to="/solicitudenviada"><input type="submit" value="Enviar" /></Link>
-
-</form>
+      <button onClick={this.handleDeleteProgram.bind(this)}>Delete</button>
 
       <h1>{this.state.error ? 'Error' : ''}</h1>
     </div>)
   }
 }
-}
-
-export default EditProgram;

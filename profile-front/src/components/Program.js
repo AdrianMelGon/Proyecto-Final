@@ -46,9 +46,9 @@ export default class Program extends Component {
   render() {
 
     let { program } = this.state;
-    /* this.state.program ? */
 if (this.state.program){
   if (this.state.loggedInUser) {
+    console.log(this.props.match.match.params.id)
     return (
       <div>
         <h1>{this.state.program.name}</h1>

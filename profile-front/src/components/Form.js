@@ -22,6 +22,7 @@ class Form extends Component {
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
+    console.log(this.state.edad)
   }
 
   render() {
@@ -76,7 +77,9 @@ class Form extends Component {
   <input type="string" name="objetivo" value={this.state.objetivo} onChange={e => this.handleChange(e)} />
 </fieldset>
 
-<Link to="/solicitudenviada"><input type="submit" value="Enviar" /></Link>
+{/* <Link to="/solicitudenviada"> */}
+<input type="submit" value="Enviar" />
+{/* </Link> */}
 
 </form>
 

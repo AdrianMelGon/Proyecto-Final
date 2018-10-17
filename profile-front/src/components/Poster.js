@@ -6,7 +6,6 @@ import axios from 'axios';
 
 class Poster extends Component {
   constructor(props) {
-    console.log(props)
     super(props);
     this.state = {
       poster: null,
@@ -41,35 +40,82 @@ class Poster extends Component {
   }
 
   render() {
+    // if (this.state.poster) {
+    //   if (this.state.loggedInUser.isNutricionist === false ) {
+    //     return (
+    //       <div className="poster-cont">
+    //         {this.state.poster.map((e, i) => <div className="poster"><h2><Link to={`/${e._id}`}>{e.name}</Link></h2></div>)}
+    //       </div>
+    //     )
+    //   } else if (this.state.loggedInUser.isNutricionist === true) {
+    //     return (
+    //       <div className="poster-cont">
+    //         {this.state.poster.map((e, i) => <div className="poster"><h2><Link to={`/${e._id}`}>{e.name}</Link></h2></div>)}
+    //       </div>
+    //     )
 
-    console.log(this.state.loggedInUser)
-    console.log(this.state.poster)
-if(this.state.poster){
-  if (this.state.loggedInUser) {
-    return (
-      <div className="poster-cont">
-      <h1>HOLI</h1>
-        {this.state.poster.map((e, i) => <div className="poster"><h2><Link to={`/${e._id}`}>{e.name}</Link></h2></div>)}
+    //   }
+    //   else if (this.state.loggedInUser == null) {
+    //     return (
+    //       <div className="poster-cont">
+    //         {this.state.poster ? this.state.poster.map((e, i) => <div className="poster"><h2><Link to={`/signup`}>{e.name}</Link></h2></div>) : ""}
+    //       </div>
+    //     )
+    //   }
 
-      </div>
-    )
-  } else if (this.state.loggedInUser == null) {
-    return (
-      <div className="poster-cont">
-        {this.state.poster ? this.state.poster.map((e, i) => <div className="poster"><h2><Link to={`/signup`}>{e.name}</Link></h2></div>) : ""}
-      </div>
-    )
+    // } else {
+    //   return (
+    //     <h1>ERROR</h1>
+    //   )
+    // }
+
+
+    //-----------------
+    // if (this.state.poster) {
+    //   console.log(this.state.loggedInUser)
+    //   if (this.state.loggedInUser) {
+    //     if (this.state.loggedInUser.isNutricionist) {
+    //       console.log(this.state.loggedInUser)
+    //       console.log(this.state.loggedInUser.isNutricionist)
+    //       return (<h1>HolaCaracola</h1>)
+    //     } else {
+    //       console.log(this.state.loggedInUser.isNutricionist)
+    //       // console.log(this.state.loggedInUser.isNutricionist)
+    //       return (<h1>HolaCaracola No logged</h1>)
+    //     }
+    //   } else { return (<h1>Error cargando credenciales</h1>) }
+    // } else {
+    //   return (<h1>Error cargando zona</h1>)
+    // }
+    //-----------------
+    if (this.state.poster) {
+      if (this.state.loggedInUser) {
+        if (this.state.loggedInUser.isNutricionist) {
+          return (
+            <div className="poster-cont">
+              {this.state.poster.map((e, i) => <div className="poster"><h2><Link to={`/editprogram/${e._id}`}>{e.name}</Link></h2></div>)}
+            </div>
+          )
+        } else {
+          return (
+            <div className="poster-cont">
+              {this.state.poster.map((e, i) => <div className="poster"><h2><Link to={`/${e._id}`}>{e.name}</Link></h2></div>)}
+            </div>
+          )
+        }
+      } else {
+        return (
+          <div className="poster-cont">
+            {this.state.poster ? this.state.poster.map((e, i) => <div className="poster"><h2><Link to={`/signup`}>{e.name}</Link></h2></div>) : ""}
+          </div>
+        )
+
+      }
+    } else {
+      return (<h1>Error cargando zona</h1>)
+    }
+
   }
-
-} else {
-  return(
-  <h1>ERROR</h1>
-  )
-}
-  }
-
-
-
 }
 
 export default Poster;
